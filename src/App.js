@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { fetchWeather } from "./apis/fetchWeather";
 import "./App.css";
 
 function App() {
 	const [query, setQuery] = useState("");
 	const [weather, setWeather] = useState({});
-	const deferredPrompt = useRef(null);
+	// const deferredPrompt = useRef(null);
 
 	const search = async e => {
 		if (e.key === "Enter") {
@@ -19,31 +19,31 @@ function App() {
 		}
 	};
 
-	useEffect(() => {
-		const ins = e => {
-			deferredPrompt.current = e;
-		};
-		window.addEventListener("beforeinstallprompt", ins);
-		return () => window.addEventListener("beforeinstallprompt", ins);
-	}, []);
+	// useEffect(() => {
+	// 	const ins = e => {
+	// 		deferredPrompt.current = e;
+	// 	};
+	// 	window.addEventListener("beforeinstallprompt", ins);
+	// 	return () => window.addEventListener("beforeinstallprompt", ins);
+	// }, []);
 
-	const handleInstall = async () => {
-		if (deferredPrompt.current !== null) {
-			deferredPrompt.current.prompt();
-			const { outcome } = await deferredPrompt.userChoice;
-			if (outcome === "accepted") {
-				deferredPrompt.current = null;
-			}
-		}
-	};
+	// const handleInstall = async () => {
+	// 	if (deferredPrompt.current !== null) {
+	// 		deferredPrompt.current.prompt();
+	// 		const { outcome } = await deferredPrompt.userChoice;
+	// 		if (outcome === "accepted") {
+	// 			deferredPrompt.current = null;
+	// 		}
+	// 	}
+	// };
 
 	return (
 		<div className="main">
-			<div style={{ textAlign: "right" }}>
+			{/* <div style={{ textAlign: "right" }}>
 				<button type="button" className="install" onClick={handleInstall}>
 					Install
 				</button>
-			</div>
+			</div> */}
 			<div className="main-container">
 				<input
 					type="text"
